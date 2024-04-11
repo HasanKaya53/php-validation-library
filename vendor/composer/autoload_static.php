@@ -8,6 +8,7 @@ class ComposerStaticInit74b93a93619eb4431518cfcc1aee0a3c
 {
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'LuckyStar\\Validation\\Config' => __DIR__ . '/../..' . '/src/config.php',
         'LuckyStar\\Validation\\Validate' => __DIR__ . '/../..' . '/src/validation.library.php',
     );
 

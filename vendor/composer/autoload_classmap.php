@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'LuckyStar\\Validation\\Config' => $baseDir . '/src/config.php',
     'LuckyStar\\Validation\\Validate' => $baseDir . '/src/validation.library.php',
 );
