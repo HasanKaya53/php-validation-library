@@ -1,0 +1,17 @@
+{
+    "name": "luckystar/validation",
+    "description": "Validation library prepared for php.",
+    "type": "library",
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "authors": [
+        {
+            "name": "hasankaya",
+            "email": "me@hasankaya.info"
+        }
+    ],
+    "require": {}
+}
