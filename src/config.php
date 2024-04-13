@@ -55,6 +55,24 @@ class Config
 			'pattern_type' => 'string',
 			'not_numeric_rule' => 'required is a string rule'
 		],
+		'/valid_email/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'valid_email',
+			'pattern' => '/valid_email/',
+			'pattern_check' => '/valid_email/',
+			'pattern_type' => 'string',
+			'not_numeric_rule' => 'valid_email is a string rule'
+		],
+		'/valid_url/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'valid_url',
+			'pattern' => '/valid_url/',
+			'pattern_check' => '/valid_url/',
+			'pattern_type' => 'string',
+			'not_numeric_rule' => 'valid_url is a string rule'
+		],
 
 	];
 
@@ -68,6 +86,7 @@ class Config
 		'valid_email' => 'The :field must be a valid email',
 		'valid_url' => 'The :field must be a valid url',
 		'numeric' => 'The :field must be a number',
+
 	];
 
 

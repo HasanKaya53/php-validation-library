@@ -33,11 +33,23 @@ $rules = [
 			'required' => 'This field is required'
 
 		]
+	],
+	'email' => [
+		'rules' => 'required|valid_email',
+		'error_messages' => [
+			'valid_email' => 'Email is not valid 1'
+		]
+	],
+	'url' => [
+		'rules' => 'required|valid_url',
+		'error_messages' => [
+			'valid_url' => 'URL is not valid'
+		]
 	]
 ];
 
 
-$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45'];
+$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45', 'req' => '', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com'];
 
 
 

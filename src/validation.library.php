@@ -27,7 +27,7 @@ class Validate extends Config
 				$numerical = 0;
 				$checkStatus = true;
 
-
+				//check if the rule is numeric
 				if (!preg_match($rulePattern['pattern'], $rule, $matches)){
 					self::$library_errors[] = $rulePattern['not_numeric_rule'];
 					return false;
@@ -53,7 +53,7 @@ class Validate extends Config
 						if (strlen($data['value']) > $numerical && $numerical > 0){
 							$checkStatus = false;
 						}
-					}if ($rulePattern['name'] == 'min_length') {
+					}else if ($rulePattern['name'] == 'min_length') {
 						if (strlen($data['value']) < $numerical && $numerical > 0) {
 							$checkStatus = false;
 						}
@@ -66,8 +66,18 @@ class Validate extends Config
 							$checkStatus = false;
 						}
 					}
-					if ($rulePattern['name'] == 'required'){
+					else if ($rulePattern['name'] == 'required'){
 						if (empty($data['value'])){
+							$checkStatus = false;
+						}
+					}
+					else if ($rulePattern['name'] == 'valid_email'){
+						if (!filter_var($data['value'], FILTER_VALIDATE_EMAIL)){
+							$checkStatus = false;
+						}
+					}
+					else if ($rulePattern['name'] == 'valid_url'){
+						if (!filter_var($data['value'], FILTER_VALIDATE_URL)){
 							$checkStatus = false;
 						}
 					}
