@@ -10,7 +10,7 @@ $validation = new LuckyStar\Validation\Validate;
 
 $rules = [
 	'username' => [
-		'rules' => 'max_length[3]|min_length[1]'
+		'rules' => 'max_length[100]|min_length[1]'
 	],
 	'password' => [
 		'rules'  => 'max_length[10]|min_length[5]',
@@ -51,11 +51,18 @@ $rules = [
 		'error_messages' => [
 			'valid_ip' => 'IP is not valid'
 		]
+	],
+
+	'number1' => [
+		'rules' => 'min[5]|max[10]',
+		'error_messages' => [
+			'min' => 'Number is too small',
+		]
 	]
 ];
 
 
-$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45', 'req' => '', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com', 'ip' => '192.168.50.1'];
+$_POST = ['username' => '12345', 'password' => '12345', 'number' => '12345', 'req' => 'req', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com', 'ip' => '192.168.50.1', 'number1' => 3];
 
 
 

@@ -16,6 +16,8 @@ class Config
 		 '/valid_email/',
 		 '/valid_url/',
 		 '/valid_ip/',
+		 '/min/',
+		 '/max/',
 	];
 
 
@@ -83,6 +85,24 @@ class Config
 			'pattern_type' => 'string',
 			'not_numeric_rule' => 'valid_ip is a string rule'
 		],
+		'/min/' => [
+			'parameter' => true,
+			"parameter_type" => "numeric", //string or numeric
+			'name' => 'min',
+			'pattern' => '/min\[\d+\]/',
+			'pattern_check' => '/min\[(\d+)\]/',
+			'pattern_type' => 'numeric',
+			'not_numeric_rule' => 'min can only be controlled numerically. example:min[1]'
+		],
+		'/max/' => [
+			'parameter' => true,
+			"parameter_type" => "numeric", //string or numeric
+			'name' => 'max',
+			'pattern' => '/max\[\d+\]/',
+			'pattern_check' => '/max\[(\d+)\]/',
+			'pattern_type' => 'numeric',
+			'not_numeric_rule' => 'max can only be controlled numerically. example:max[5]'
+		],
 
 	];
 
@@ -97,6 +117,8 @@ class Config
 		'valid_url' => 'The :field must be a valid url',
 		'numeric' => 'The :field must be a number',
 		'valid_ip' => 'The :field must be a valid ip address',
+		'min' => 'The :field must be greater than :number',
+		'max' => 'The :field must be less than :number',
 
 	];
 

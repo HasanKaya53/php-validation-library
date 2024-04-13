@@ -52,9 +52,21 @@
 </tr>
 
 <tr>
-    <td>valid_ip  [coming soon] </td>
+    <td>valid_ip </td>
     <td>This field must contain a valid IP address</td>
     <td>valid_ip</td>
+</tr>
+
+<tr>
+<td>min</td>
+    <td>This field must be greater than or equal to {min}</td>
+    <td>min[5]</td>
+</tr>
+
+<tr>
+<td>max</td>
+    <td>This field must be less than or equal to {max}</td>
+    <td>max[10]</td>
 </tr>
 
 </table>
@@ -76,6 +88,40 @@
 </table>
 
 
+<h3> Error parameters </h3>
+<table>
+<tr>
+    <th>Parameter</th>
+    <th>Description</th>
+    <th>Example </th>
+</tr>
+
+<tr>
+    <td>:field</td>
+    <td>Field name</td>
+    <td>'error_messages' => [
+            'required' => ':field  is required',
+            'max_length' => ':field is too long',
+            'min_length' => ':field is too short'
+        ] </td>
+</tr>
+
+<tr>
+<td>:number</td>
+    <td> Field Number  </td>
+    <td>'error_messages' => [
+            'min' => ':field must be greater than or equal to :number',
+            'max' => ':field must be less than or equal to :number'
+        ]</td>
+
+</tr>
+
+
+</table>
+
+
+
+
 
 
 
@@ -92,9 +138,9 @@ $rules = [
     'username' => [
         'rules' => 'required|max_length[10]|min_length[5]',
         'error_messages' => [
-            'required' => 'This field is required',
-            'max_length' => 'Username is too long',
-            'min_length' => 'Username is too short'
+            'required' => ':field is required',
+            'max_length' => 'Username is too long max: :number',
+            'min_length' => 'Username is too short min:  :number'
         ]
     ]
 ];

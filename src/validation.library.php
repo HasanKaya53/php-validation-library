@@ -20,15 +20,25 @@ class Validate extends Config
 
 	private static function checkRules($data,$rule) : bool{
 		//string match.. max_length match max_length[5]
-		foreach (self::$rule_pattern as $pattern){
-			if (preg_match($pattern, $rule)){
 
+
+
+
+		foreach (self::$rule_pattern as $pattern){
+
+
+			if (preg_match_all($pattern, $rule)){
+				//echo 'eşleşti:'.$pattern.' '.$rule.'<br>';
 				$rulePattern = self::$rule_pattern_check[$pattern];
+				//echo $rulePattern['pattern']." => ".$rule.'<br>';
+
 				$numerical = 0;
 				$checkStatus = true;
 
+				//echo $rulePattern['pattern']." => ".$rule.'<br>';
 				//check if the rule is numeric
 				if (!preg_match($rulePattern['pattern'], $rule, $matches)){
+					//echo "sorun var..".'<br>';
 					self::$library_errors[] = $rulePattern['not_numeric_rule'];
 					return false;
 				}
@@ -58,6 +68,18 @@ class Validate extends Config
 							$checkStatus = false;
 						}
 					}
+					else if ($rulePattern['name'] == 'min'){
+						if ($data['value'] < $numerical){
+							$checkStatus = false;
+						}
+					}
+					else if ($rulePattern['name'] == 'max'){
+						if ($data['value'] > $numerical){
+							$checkStatus = false;
+						}
+					}
+
+
 				}
 				else if($rulePattern['pattern_type'] == "string"){
 					//string check
@@ -96,10 +118,20 @@ class Validate extends Config
 						if (isset(self::$errorMessages[$data['name']][$rulePattern['name']])){
 							self::$errors[] = self::$errorMessages[$data['name']][$rulePattern['name']];
 						}else{
-							self::$errors[] = str_replace(':field', $data['name'], self::$error_messages[$rulePattern['name']]);
+
+							self::$error_messages[$rulePattern['name'] ] = str_replace(':field', $data['name'], self::$error_messages[$rulePattern['name']]);
+
+							if($rulePattern['pattern_type'] == "numeric"){
+								self::$error_messages[$rulePattern['name'] ] = str_replace(':number', $numerical, self::$error_messages[$rulePattern['name']]);
+							}
+
+
+
+							self::$errors[] = self::$error_messages[$rulePattern['name']];
 						}
 					}
 
+					break;
 
 
 			}
@@ -156,17 +188,11 @@ class Validate extends Config
 		if (empty($rulesArray)){
 			return self::$library_errors;
 		}
-
-
-
-
-
 		//check rules..
 
 		foreach(self::$rules as $key => $value){
 			foreach($value as $k => $v) {
 				//check if the rule has a parameter
-
 				$rule = self::checkRules(['name' => $key, 'value' => ($data[$key] ?? null)] , $v);
 				if (!$rule){
 					return self::$library_errors;
