@@ -46,13 +46,13 @@
 </tr>
 
 <tr>
-    <td>is_url  [coming soon]</td>
+    <td>valid_url </td>
     <td>This field must contain a valid URL</td>
     <td>is_url</td>
 </tr>
 
 <tr>
-    <td>is_ip  [coming soon] </td>
+    <td>valid_ip  [coming soon] </td>
     <td>This field must contain a valid IP address</td>
     <td>is_ip</td>
 </tr>
