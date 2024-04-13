@@ -24,7 +24,8 @@ class Validate extends Config
 			if (preg_match($pattern, $rule)){
 
 				$rulePattern = self::$rule_pattern_check[$pattern];
-
+				$numerical = 0;
+				$checkStatus = true;
 
 
 				if (!preg_match($rulePattern['pattern'], $rule, $matches)){
@@ -33,46 +34,59 @@ class Validate extends Config
 				}
 
 				if ($rulePattern['parameter']){
-
 					preg_match($rulePattern['pattern_check'] ,$rule, $matches);
-
-					if (!is_numeric($matches[1])){
-						self::$library_errors[] = $rulePattern['not_numeric_rule'];
-						return false;
-					}
-
-
-
-					if($rulePattern['pattern_type'] == "numeric"){
-						//numeric check
-						$numerical = $matches[1];
-
-						$checkStatus = true;
-
-
-
-						if ($rulePattern['name'] == 'max_length'){
-							if (strlen($data['value']) > $numerical){
-								$checkStatus = false;
-							}
-						}if ($rulePattern['name'] == 'min_length') {
-							if (strlen($data['value']) < $numerical) {
-								$checkStatus = false;
-							}
+					if($rulePattern['parameter_type'] == "numeric"){
+						if (!is_numeric($matches[1])){
+							self::$library_errors[] = $rulePattern['not_numeric_rule'];
+							return false;
 						}
+					}
+					$numerical = $matches[1];
+				}
 
 
+				if($rulePattern['pattern_type'] == "numeric"){
+					//numeric check
 
-						if($checkStatus === false){
-							self::$errors['status'] = 0;
-							if (isset(self::$errorMessages[$data['name']]['min_length'])){
-								self::$errors[] = self::$errorMessages[$data['name']]['min_length'];
-							}else{
-								self::$errors[] = str_replace(':field', $data['name'], self::$error_messages[$rulePattern['name']]);
-							}
+
+					if ($rulePattern['name'] == 'max_length'){
+						if (strlen($data['value']) > $numerical && $numerical > 0){
+							$checkStatus = false;
+						}
+					}if ($rulePattern['name'] == 'min_length') {
+						if (strlen($data['value']) < $numerical && $numerical > 0) {
+							$checkStatus = false;
 						}
 					}
 				}
+				else if($rulePattern['pattern_type'] == "string"){
+					//string check
+					if ($rulePattern['name'] == 'is_numeric'){
+						if (!is_numeric($data['value'])){
+							$checkStatus = false;
+						}
+					}
+					if ($rulePattern['name'] == 'required'){
+						if (empty($data['value'])){
+							$checkStatus = false;
+						}
+					}
+
+
+				}
+
+
+					if($checkStatus === false){
+						//self::$errors['status'] = 0;
+						if (isset(self::$errorMessages[$data['name']][$rulePattern['name']])){
+							self::$errors[] = self::$errorMessages[$data['name']][$rulePattern['name']];
+						}else{
+							self::$errors[] = str_replace(':field', $data['name'], self::$error_messages[$rulePattern['name']]);
+						}
+					}
+
+
+
 			}
 		}
 
@@ -135,7 +149,8 @@ class Validate extends Config
 		foreach(self::$rules as $key => $value){
 			foreach($value as $k => $v) {
 				//check if the rule has a parameter
-				$rule = self::checkRules(['name' => $key, 'value' => $data[$key]], $v);
+
+				$rule = self::checkRules(['name' => $key, 'value' => ($data[$key] ?? null)] , $v);
 				if (!$rule){
 					return self::$library_errors;
 				}

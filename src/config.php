@@ -21,6 +21,7 @@ class Config
 	protected static $rule_pattern_check = [
 		'/max_length/' => [
 			'parameter' => true,
+			"parameter_type" => "numeric", //string or numeric
 			'name' => 'max_length',
 			'pattern' => '/max_length\[\d+\]/',
 			'pattern_check' => '/max_length\[(\d+)\]/',
@@ -29,11 +30,30 @@ class Config
 		],
 		'/min_length/' => [
 			'parameter' => true,
+			"parameter_type" => "numeric", //string or numeric
 			'name' => 'min_length',
 			'pattern' => '/min_length\[\d+\]/',
 			'pattern_check' => '/min_length\[(\d+)\]/',
 			'pattern_type' => 'numeric',
 			'not_numeric_rule' => 'min_length can only be controlled numerically. example:min_length[1]'
+		],
+		'/is_numeric/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'is_numeric',
+			'pattern' => '/is_numeric/',
+			'pattern_check' => '/is_numeric/',
+			'pattern_type' => 'string',
+			'not_numeric_rule' => 'is_numeric is a string rule'
+		],
+		'/required/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'required',
+			'pattern' => '/required/',
+			'pattern_check' => '/required/',
+			'pattern_type' => 'string',
+			'not_numeric_rule' => 'required is a string rule'
 		],
 
 	];

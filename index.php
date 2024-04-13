@@ -18,21 +18,43 @@ $rules = [
 			'max_length' => 'Password is too long',
 			'min_length' => 'Password is too short'
 		]
+	],
+	'number' => [
+		'rules' => 'is_numeric|max_length[8]|min_length[3]',
+		'error_messages' => [
+			'is_numeric' => ' Sayısal olmalı ...',
+			'max_length' => 'Number is too long',
+			'min_length' => 'Number is too short'
+		]
+	],
+	'req' => [
+		'rules' => 'required',
+		'error_messages' => [
+			'required' => 'This field is required'
+
+		]
 	]
 ];
 
-$_POST = ['username' => '12345', 'password' => '12345'];
+$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45'];
 
 
 
 $checker = $validation->validateRule($_POST, $rules);
 
 
+
+
 if ($checker){
 	//no errors
-	echo "No errors";
+	foreach ($validation->getErrors() as $error){
+		echo $error . "<br>";
+	}
+
 }else{
-	print_r($validation->getErrors());
+
+
+	echo "No errors";
 }
 
 
