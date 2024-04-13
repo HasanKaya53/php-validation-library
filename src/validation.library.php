@@ -129,6 +129,8 @@ class Validate extends Config
 
 	}
 
+
+
 	public static function validateRule($data, $rules) : array {
 
 		$errors = [];
