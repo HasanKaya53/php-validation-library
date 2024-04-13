@@ -45,11 +45,17 @@ $rules = [
 		'error_messages' => [
 			'valid_url' => 'URL is not valid'
 		]
+	],
+	'ip' => [
+		'rules' => 'required|valid_ip',
+		'error_messages' => [
+			'valid_ip' => 'IP is not valid'
+		]
 	]
 ];
 
 
-$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45', 'req' => '', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com'];
+$_POST = ['username' => '12345', 'password' => '12345', 'number' => '123sa45', 'req' => '', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com', 'ip' => '192.168.50.1'];
 
 
 

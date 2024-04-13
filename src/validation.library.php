@@ -81,6 +81,11 @@ class Validate extends Config
 							$checkStatus = false;
 						}
 					}
+					else if ($rulePattern['name'] == 'valid_ip'){
+						if (!filter_var($data['value'], FILTER_VALIDATE_IP)){
+							$checkStatus = false;
+						}
+					}
 
 
 				}

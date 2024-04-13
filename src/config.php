@@ -15,6 +15,7 @@ class Config
 		 '/required/',
 		 '/valid_email/',
 		 '/valid_url/',
+		 '/valid_ip/',
 	];
 
 
@@ -73,6 +74,15 @@ class Config
 			'pattern_type' => 'string',
 			'not_numeric_rule' => 'valid_url is a string rule'
 		],
+		'/valid_ip/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'valid_ip',
+			'pattern' => '/valid_ip/',
+			'pattern_check' => '/valid_ip/',
+			'pattern_type' => 'string',
+			'not_numeric_rule' => 'valid_ip is a string rule'
+		],
 
 	];
 
@@ -86,6 +96,7 @@ class Config
 		'valid_email' => 'The :field must be a valid email',
 		'valid_url' => 'The :field must be a valid url',
 		'numeric' => 'The :field must be a number',
+		'valid_ip' => 'The :field must be a valid ip address',
 
 	];
 

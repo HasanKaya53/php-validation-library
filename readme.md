@@ -42,19 +42,19 @@
 <tr>
     <td>valid_email </td>
     <td>This field must contain a valid email address</td>
-    <td>is_email</td>
+    <td>valid_email</td>
 </tr>
 
 <tr>
     <td>valid_url </td>
     <td>This field must contain a valid URL</td>
-    <td>is_url</td>
+    <td>valid_url</td>
 </tr>
 
 <tr>
     <td>valid_ip  [coming soon] </td>
     <td>This field must contain a valid IP address</td>
-    <td>is_ip</td>
+    <td>valid_ip</td>
 </tr>
 
 </table>
