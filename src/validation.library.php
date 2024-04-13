@@ -114,21 +114,28 @@ class Validate extends Config
 
 
 					if($checkStatus === false){
-						//self::$errors['status'] = 0;
+
+
+
+						$error = "";
+
+
+
+						#check if custom error message is set
 						if (isset(self::$errorMessages[$data['name']][$rulePattern['name']])){
-							self::$errors[] = self::$errorMessages[$data['name']][$rulePattern['name']];
+							//self::$errors[] = self::$errorMessages[$data['name']][$rulePattern['name']];
+							$error = self::$errorMessages[$data['name']][$rulePattern['name']];
 						}else{
-
-							self::$error_messages[$rulePattern['name'] ] = str_replace(':field', $data['name'], self::$error_messages[$rulePattern['name']]);
-
-							if($rulePattern['pattern_type'] == "numeric"){
-								self::$error_messages[$rulePattern['name'] ] = str_replace(':number', $numerical, self::$error_messages[$rulePattern['name']]);
-							}
-
-
-
-							self::$errors[] = self::$error_messages[$rulePattern['name']];
+							//self::$errors[] = self::$error_messages[$rulePattern['name']];
+							$error = self::$error_messages[$rulePattern['name']];
 						}
+
+
+						#replace the placeholders
+						$error = str_replace(':field', $data['name'], $error);
+						$error = str_replace(':number', $numerical, $error);
+
+						self::$errors[] = $error;
 					}
 
 					break;

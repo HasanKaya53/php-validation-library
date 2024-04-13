@@ -76,15 +76,18 @@
 
 <tr>
     <th>Parameter</th>
+    <th>Type</th>
     <th>Description</th>
     <th>Example </th>
 </tr>
 
 <tr>
     <td>error_messages</td>
+    <td>Array</td>
     <td>Custom error messages</td>
     <td>error_messages => ['required' => 'This field is required']</td>
 </tr>
+
 </table>
 
 

@@ -56,13 +56,13 @@ $rules = [
 	'number1' => [
 		'rules' => 'min[5]|max[10]',
 		'error_messages' => [
-			'min' => 'Number is too small',
+			'min' => 'Number is too small :number',
 		]
 	]
 ];
 
 
-$_POST = ['username' => '12345', 'password' => '12345', 'number' => '12345', 'req' => 'req', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com', 'ip' => '192.168.50.1', 'number1' => 3];
+$_POST = ['username' => '12345', 'password' => '12345', 'number' => '12345', 'req' => 'req', 'email' => 'test@gmail.com', 'url' => 'https://www.google.com', 'ip' => '192.168.50.1', 'number1' => 4];
 
 
 
