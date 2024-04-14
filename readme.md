@@ -69,6 +69,11 @@
     <td>max[10]</td>
 </tr>
 
+<tr>
+ <td>date</td>
+    <td>This field must be a valid date</td>
+    <td>date</td>
+</tr>
 </table>
 
 <h3> Other Parameters </h3>

@@ -18,6 +18,7 @@ class Config
 		 '/valid_ip/',
 		 '/min/',
 		 '/max/',
+		 '/date/',
 	];
 
 
@@ -29,7 +30,7 @@ class Config
 			'pattern' => '/max_length\[\d+\]/',
 			'pattern_check' => '/max_length\[(\d+)\]/',
 			'pattern_type' => 'numeric',
-			'not_numeric_rule' => 'max_length can only be controlled numerically.example:max_length[5]'
+			'library_error' => 'max_length can only be controlled numerically.example:max_length[5]'
 		],
 		'/min_length/' => [
 			'parameter' => true,
@@ -47,7 +48,7 @@ class Config
 			'pattern' => '/is_numeric/',
 			'pattern_check' => '/is_numeric/',
 			'pattern_type' => 'string',
-			'not_numeric_rule' => 'is_numeric is a string rule'
+			'library_error' => 'is_numeric is a string rule'
 		],
 		'/required/' => [
 			'parameter' => false,
@@ -56,7 +57,7 @@ class Config
 			'pattern' => '/required/',
 			'pattern_check' => '/required/',
 			'pattern_type' => 'string',
-			'not_numeric_rule' => 'required is a string rule'
+			'library_error' => 'required is a string rule'
 		],
 		'/valid_email/' => [
 			'parameter' => false,
@@ -65,7 +66,7 @@ class Config
 			'pattern' => '/valid_email/',
 			'pattern_check' => '/valid_email/',
 			'pattern_type' => 'string',
-			'not_numeric_rule' => 'valid_email is a string rule'
+			'library_error' => 'valid_email is a string rule'
 		],
 		'/valid_url/' => [
 			'parameter' => false,
@@ -74,7 +75,7 @@ class Config
 			'pattern' => '/valid_url/',
 			'pattern_check' => '/valid_url/',
 			'pattern_type' => 'string',
-			'not_numeric_rule' => 'valid_url is a string rule'
+			'library_error' => 'valid_url is a string rule'
 		],
 		'/valid_ip/' => [
 			'parameter' => false,
@@ -83,7 +84,7 @@ class Config
 			'pattern' => '/valid_ip/',
 			'pattern_check' => '/valid_ip/',
 			'pattern_type' => 'string',
-			'not_numeric_rule' => 'valid_ip is a string rule'
+			'library_error' => 'valid_ip is a string rule'
 		],
 		'/min/' => [
 			'parameter' => true,
@@ -92,7 +93,7 @@ class Config
 			'pattern' => '/min\[\d+\]/',
 			'pattern_check' => '/min\[(\d+)\]/',
 			'pattern_type' => 'numeric',
-			'not_numeric_rule' => 'min can only be controlled numerically. example:min[1]'
+			'library_error' => 'min can only be controlled numerically. example:min[1]'
 		],
 		'/max/' => [
 			'parameter' => true,
@@ -101,7 +102,16 @@ class Config
 			'pattern' => '/max\[\d+\]/',
 			'pattern_check' => '/max\[(\d+)\]/',
 			'pattern_type' => 'numeric',
-			'not_numeric_rule' => 'max can only be controlled numerically. example:max[5]'
+			'library_error' => 'max can only be controlled numerically. example:max[5]'
+		],
+		'/date/' => [
+			'parameter' => false,
+			"parameter_type" => "string", //string or numeric
+			'name' => 'date',
+			'pattern' => '/date/',
+			'pattern_check' => '/date\[(\d+)\]/',
+			'pattern_type' => 'string',
+			'library_error' => 'date is a string rule'
 		],
 
 	];
@@ -119,6 +129,7 @@ class Config
 		'valid_ip' => 'The :field must be a valid ip address',
 		'min' => 'The :field must be greater than :number',
 		'max' => 'The :field must be less than :number',
+		'date' => 'The :field must be a valid date format',
 
 	];
 

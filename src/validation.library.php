@@ -38,8 +38,7 @@ class Validate extends Config
 				//echo $rulePattern['pattern']." => ".$rule.'<br>';
 				//check if the rule is numeric
 				if (!preg_match($rulePattern['pattern'], $rule, $matches)){
-					//echo "sorun var..".'<br>';
-					self::$library_errors[] = $rulePattern['not_numeric_rule'];
+					self::$library_errors[] = $rulePattern['library_error'];
 					return false;
 				}
 
@@ -47,7 +46,7 @@ class Validate extends Config
 					preg_match($rulePattern['pattern_check'] ,$rule, $matches);
 					if($rulePattern['parameter_type'] == "numeric"){
 						if (!is_numeric($matches[1])){
-							self::$library_errors[] = $rulePattern['not_numeric_rule'];
+							self::$library_errors[] = $rulePattern['library_error'];
 							return false;
 						}
 					}
@@ -108,6 +107,14 @@ class Validate extends Config
 							$checkStatus = false;
 						}
 					}
+					else if ($rulePattern['name'] == 'date'){
+						#$data['value'] is a date string
+						$date = date_parse($data['value']);
+						if ((empty($date['year']) || empty($date['month']) || empty($date['day'])) || $date['error_count'] > 0){
+							$checkStatus = false;
+						}
+
+					}
 
 
 				}
@@ -133,8 +140,10 @@ class Validate extends Config
 
 						#replace the placeholders
 						$error = str_replace(':field', $data['name'], $error);
-						$error = str_replace(':number', $numerical, $error);
 
+						if($rulePattern['pattern_type'] == "numeric"){
+							$error = str_replace(':number', $numerical, $error);
+						}
 						self::$errors[] = $error;
 					}
 
@@ -214,8 +223,7 @@ class Validate extends Config
 	}
 
 
-
-	public function getErrors(){
+	public function getErrors() : array{
 		return self::$errors;
 	}
 
